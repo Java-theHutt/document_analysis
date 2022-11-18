@@ -4,7 +4,7 @@ public class CustomThread extends Thread{
 
     //Each thread will stop when stopFlag is set to false.
     private volatile boolean stopFlag = true;
-    private Document document;
+    private final Document document;
 
     public CustomThread(String name, Document document){
         this.document = document;
@@ -14,7 +14,9 @@ public class CustomThread extends Thread{
 
     public void run(){
         while(stopFlag) {
-            editDocument();
+            synchronized (document) { //synchronizing the critical section - ie. only one thread can edit at a time.
+                editDocument();
+            }
         }
     }
 

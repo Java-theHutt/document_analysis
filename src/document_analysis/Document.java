@@ -47,8 +47,9 @@ public class Document {
         }
     }
 
-    public synchronized void editDocument(){
-
+    public void editDocument(){
+        //appends text in doc
+        //printWriter.println("something something")
     }
 
 }
