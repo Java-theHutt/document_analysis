@@ -16,7 +16,7 @@ public class Document {
     private int lineCount;
     private int charCount;
 
-    public Document(String path){
+    public Document(){
         setupReaderAndWriter();
         printContent();
     }
@@ -45,6 +45,10 @@ public class Document {
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    public synchronized void editDocument(){
+
     }
 
 }

@@ -6,11 +6,11 @@ public class logic {
 
     private final ClassLoader classLoader = getClass().getClassLoader();
 
-    private CustomThread[] threads = new CustomThread[20];
+    private final CustomThread[] threads = new CustomThread[20];
     private Document document = null;
 
     public logic(){
-        this.document = new Document(setFile());
+        this.document = new Document();
     }
 
     public void setThreads(){
