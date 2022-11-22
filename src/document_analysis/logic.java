@@ -1,7 +1,5 @@
 package document_analysis;
 
-import java.util.Objects;
-
 public class logic {
 
     private final ClassLoader classLoader = getClass().getClassLoader();
