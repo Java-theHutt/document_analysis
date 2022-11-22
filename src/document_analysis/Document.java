@@ -18,15 +18,18 @@ public class Document {
     private PrintWriter printWriter;
 
     private ArrayList<String> document = new ArrayList<String>();
+    private ArrayList<String> list = new ArrayList<>();
 
     private int wordCount;
     private int lineCount;
     private int charCount;
+    private int listLineCount;
 
     public Document(){
         setupReaderAndWriter();
         fillDocumentArr();
         printContent();
+        listLineCount = 0;
     }
 
     private void setupReaderAndWriter() {
@@ -49,6 +52,13 @@ public class Document {
         }
     }
 
+    public void printList(){
+        for (String string : list) {
+            System.out.println(string);
+        }
+    }
+
+
     public void fillDocumentArr() {
         String line;
         try {
@@ -61,9 +71,13 @@ public class Document {
         }
     }
 
-    public void editDocument(){
-        //appends text in doc
-        //printWriter.println("something something")
+    public void editDocument(CustomThread thread){
+        if (lineCount <= 2000) {
+            list.add(thread.getName() + " added line number: " + lineCount);
+            lineCount++;
+        }
+        else
+            thread.stopThread();
     }
 
     public ArrayList<String> getDocument() {
