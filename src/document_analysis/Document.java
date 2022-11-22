@@ -1,7 +1,12 @@
 package document_analysis;
 
-import javax.print.Doc;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class Document {
 
@@ -12,12 +17,15 @@ public class Document {
     private BufferedWriter bufferedWriter;
     private PrintWriter printWriter;
 
+    private ArrayList<String> document = new ArrayList<String>();
+
     private int wordCount;
     private int lineCount;
     private int charCount;
 
     public Document(){
         setupReaderAndWriter();
+        fillDocumentArr();
         printContent();
     }
 
@@ -36,13 +44,19 @@ public class Document {
     }
 
     public void printContent(){
-        String line;
+        for (String string : document) {
+            System.out.println(string);
+        }
+    }
 
+    public void fillDocumentArr() {
+        String line;
         try {
-            while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+            while ((line = bufferedReader.readLine()) != null) {   
+                document.add(line);
             }
-        }catch(IOException e){
+        } catch (Exception e) {
+            // TODO: handle exception
             e.printStackTrace();
         }
     }
@@ -52,4 +66,8 @@ public class Document {
         //printWriter.println("something something")
     }
 
+    public ArrayList<String> getDocument() {
+        return document;
+    }
+        
 }
