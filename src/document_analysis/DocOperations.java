@@ -1,9 +1,10 @@
 package document_analysis;
 
 public class DocOperations {
-    private Document document = new Document();
+    public Document document;
 
     public DocOperations() {
+        this.document = new Document();
         System.out.println(getWordCount());
         System.out.println(getLineCount());
         System.out.println(getCharacterCountWithSpaces());

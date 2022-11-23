@@ -7,10 +7,10 @@ import java.util.concurrent.Semaphore;
 public class logic {
     //private final CustomThread[] threads = new CustomThread[20];
     private final ExecutorService executor = Executors.newFixedThreadPool(20);
-    public Document document = null;
+    public DocOperations docOperations = null;
 
     public logic(){
-        this.document = new Document();
+        this.docOperations = new DocOperations();
         Semaphore sem = new Semaphore(1);
         //setThreads(sem);
         startThreads(sem);
@@ -18,7 +18,7 @@ public class logic {
         while(!executor.isTerminated()){
 
         }
-        document.printList();
+        docOperations.document.printList();
     }
 
     /*public void setThreads(Semaphore sem){
@@ -33,7 +33,7 @@ public class logic {
      */
     public void startThreads(Semaphore sem){
         for (int i = 0; i < 20; i++) {
-            CustomThread thread = new CustomThread("thread" + (i+1),document,sem,true);
+            CustomThread thread = new CustomThread("thread" + (i+1), docOperations.document,sem,true);
             executor.execute(thread);
         }
         /*for (Thread t : threads){
