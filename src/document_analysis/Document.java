@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.jar.JarOutputStream;
 
 public class Document {
 
@@ -29,7 +30,7 @@ public class Document {
         setupReaderAndWriter();
         fillDocumentArr();
         printContent();
-        listLineCount = 0;
+        listLineCount = 1;
     }
 
     private void setupReaderAndWriter() {
@@ -56,6 +57,7 @@ public class Document {
         for (String string : list) {
             System.out.println(string);
         }
+        System.out.println("Linecount is " + lineCount);
     }
 
 
@@ -72,9 +74,9 @@ public class Document {
     }
 
     public void editDocument(CustomThread thread){
-        if (lineCount <= 2000) {
-            list.add(thread.getName() + " added line number: " + lineCount);
-            lineCount++;
+        if (listLineCount <= 2000) {
+            list.add(thread.getName() + " added line number: " + listLineCount);
+            listLineCount++;
         }
         else
             thread.stopThread();
