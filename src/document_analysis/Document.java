@@ -64,7 +64,7 @@ public class Document {
     }
 
     public void editDocument(WriteThread thread){
-        if (lineCount < 2000) {
+        if (lineCount < 100) {
             document.add(thread.getName() + " added line number: " + (lineCount +1));
             lineCount++;
         }
