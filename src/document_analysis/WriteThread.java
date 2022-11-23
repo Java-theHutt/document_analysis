@@ -2,16 +2,16 @@ package document_analysis;
 
 import java.util.concurrent.Semaphore;
 
-public class CustomThread extends Thread{
+public class WriteThread extends Thread{
 
     //Each thread will stop when stopFlag is set to false.
     public volatile boolean stopFlag = true;
-    private final Document document;
+    private final DocOperations docOperations;
     Semaphore sem;
     boolean withConcurrency;
 
-    public CustomThread(String name, Document document, Semaphore sem,boolean withConcurrency){
-        this.document = document;
+    public WriteThread(String name, DocOperations docOperations, Semaphore sem, boolean withConcurrency){
+        this.docOperations = docOperations;
         setName(name);
         this.sem = sem;
         this.withConcurrency = withConcurrency;
@@ -21,9 +21,9 @@ public class CustomThread extends Thread{
         if(withConcurrency){
         while(stopFlag) {
             try{
-                sleep(50);
+                sleep(20);
                 sem.acquire(); //A thread must acuirre the semaphore / permit before it continues
-                document.editDocument(this);
+                docOperations.document.editDocument(this);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -37,7 +37,12 @@ public class CustomThread extends Thread{
 
     private void withoutConcurrencyRun() {
         while(stopFlag) {
-            document.editDocument(this);
+            try{
+                sleep(10);
+                docOperations.document.editDocument(this);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

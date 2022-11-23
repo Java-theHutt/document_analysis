@@ -5,10 +5,11 @@ public class DocOperations {
 
     public DocOperations() {
         this.document = new Document();
-        System.out.println(getWordCount());
+        /*System.out.println(getWordCount());
         System.out.println(getLineCount());
         System.out.println(getCharacterCountWithSpaces());
         System.out.println(getCharacterCountNoSpaces());
+         */
 
     }
 
