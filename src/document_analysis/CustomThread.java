@@ -21,6 +21,7 @@ public class CustomThread extends Thread{
         if(withConcurrency){
         while(stopFlag) {
             try{
+                sleep(50);
                 sem.acquire(); //A thread must acuirre the semaphore / permit before it continues
                 document.editDocument(this);
             } catch (InterruptedException e) {
@@ -29,14 +30,6 @@ public class CustomThread extends Thread{
             finally {
                 sem.release(); //After completing or not completing its task, a thread releases its permit.
             }
-
-            try{
-                sleep(50);
-            }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
         }}
         else
             withoutConcurrencyRun();

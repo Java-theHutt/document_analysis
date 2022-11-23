@@ -33,7 +33,7 @@ public class logic {
      */
     public void startThreads(Semaphore sem){
         for (int i = 0; i < 20; i++) {
-            CustomThread thread = new CustomThread("thread" + (i+1),document,sem,false);
+            CustomThread thread = new CustomThread("thread" + (i+1),document,sem,true);
             executor.execute(thread);
         }
         /*for (Thread t : threads){
