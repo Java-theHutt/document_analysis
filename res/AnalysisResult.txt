@@ -1,0 +1,4 @@
+read-thread2: wordcount = 58
+read-thread3: charcount with spaces = 295
+read-thread4: charcount without spaces = 245
+read-thread1: linecount = 8

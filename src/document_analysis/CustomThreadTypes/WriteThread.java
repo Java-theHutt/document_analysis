@@ -1,4 +1,6 @@
-package document_analysis;
+package document_analysis.CustomThreadTypes;
+
+import document_analysis.DocOperations;
 
 import java.util.concurrent.Semaphore;
 

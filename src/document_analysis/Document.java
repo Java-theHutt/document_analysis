@@ -1,5 +1,7 @@
 package document_analysis;
 
+import document_analysis.CustomThreadTypes.WriteThread;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -19,24 +21,36 @@ public class Document {
 
     private final ArrayList<String> document = new ArrayList<>();
 
-    private int wordCount;
-    private int charCount;
+    private String path;
     private int lineCount;
 
     public Document(){
-        setupReaderAndWriter();
+        setupReader();
         fillDocumentArr();
         lineCount = 0;
     }
 
-    private void setupReaderAndWriter() {
+    public Document(String path){
+        setupReader();
+        fillDocumentArr();
+        setupWriter(path);
+        this.path = path;
+    }
+
+    private void setupWriter(String path) {
+        try{
+            this.fileWriter = new FileWriter(path);
+            this.bufferedWriter = new BufferedWriter(fileWriter);
+
+        }catch(IOException e){
+            System.out.println("File does not exist");
+        }
+    }
+
+    private void setupReader() {
         try{
             this.reader = new FileReader("res/docx.txt");
             this.bufferedReader = new BufferedReader(reader);
-
-            this.fileWriter = new FileWriter("res/docx.txt",true);
-            this.bufferedWriter = new BufferedWriter(fileWriter);
-            this.printWriter = new PrintWriter(bufferedWriter);
 
         }catch(IOException e){
             System.out.println("File does not exist");
@@ -60,6 +74,16 @@ public class Document {
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
+        }
+    }
+
+    public void writeResult(String result){
+        try {
+            this.fileWriter = new FileWriter(path,true);
+            fileWriter.append(result+"\n");
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("no file");
         }
     }
 

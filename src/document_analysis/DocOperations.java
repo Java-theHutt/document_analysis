@@ -10,7 +10,15 @@ public class DocOperations {
         System.out.println(getCharacterCountWithSpaces());
         System.out.println(getCharacterCountNoSpaces());
          */
+    }
 
+    public DocOperations(String path) {
+        this.document = new Document(path);
+        /*System.out.println(getWordCount());
+        System.out.println(getLineCount());
+        System.out.println(getCharacterCountWithSpaces());
+        System.out.println(getCharacterCountNoSpaces());
+         */
     }
 
     public int getWordCount() {

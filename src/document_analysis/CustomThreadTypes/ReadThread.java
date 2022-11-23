@@ -1,4 +1,6 @@
-package document_analysis;
+package document_analysis.CustomThreadTypes;
+
+import document_analysis.DocOperations;
 
 import java.util.concurrent.Semaphore;
 
@@ -26,5 +28,4 @@ public class ReadThread extends Thread{
             System.out.println("Modification exception");
         }
     }
-
 }
